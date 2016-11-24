@@ -1,3 +1,20 @@
-<h1>
-  {{title}}
-</h1>
+
+<form (ngSubmit)="enterkey()">
+  <div class="todocard">
+    <input id="new-text" type="text" [(ngModel)]='this.inputMessage' name="inputMessage" placeholder=" Add new card">
+    <button id="add-button" (click)="save()">+</button>
+  </div>
+</form>
+  <div *ngFor="let item of items | async">
+    <!--input type="text" [(ngModel)]='item.message' (ngModelChange)="changed(item,$event)"-->
+    <!--input type="text" name='message' [(ngModel)]='item.message'-->
+    <div class="todocard">
+      <input class='checkbox-done' type="checkbox" class="filled-in" name='checked' [(ngModel)]='item.done'  (ngModelChange)="checkboxChanged(item)">
+      <div class="message" [class.done]="item.done">
+        {{item.message}}
+      </div>
+      <div class="cross" (click)="delete(item.$key)">x</div>
+    </div>
+  </div>
+<div>
+</div>
